@@ -1,0 +1,280 @@
+/* Style for top bar */
+
+.nav-container {
+    padding: 20px;
+    margin: 0;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.left img {
+    width: 100px;
+    margin: 0;
+}
+
+.right {
+    display: flex;
+    align-items: left;
+}
+
+.right div {
+    width: 30px;
+    color: #009d64;
+    padding: 0 5px;
+}
+
+.search {
+    padding: 0px 20px 10px 20px;
+    height: 25px;
+    margin-top: 10px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 10px;
+}
+
+.search input {
+    width: 100%;
+    padding: 10px 0 10px 8px;
+    font-size: 14px;
+    height: 22px;
+    border: 0;
+    border-radius: 4px;
+    box-shadow: 2px 2px 3px 2px rgb(220, 220, 220);
+}
+
+.search-btn {
+    position: absolute;
+    width: 30px;
+    background-color: #009d64;
+    color: white;
+    right: 20px;
+    top: 45%;
+    border-radius: 4px;
+    padding: 0 4px;
+    border: none;
+}
+
+.cart-icon {
+    position: relative;
+}
+
+.cart-icon a {
+    text-decoration: none;
+    color: #009d64;
+}
+
+.cart-icon .num {
+    position: absolute;
+    left: 32px;
+    top: -4px;
+    padding-left: 4px;
+    padding-right: 4px;
+    font-size: 12px;
+    background-color: red;
+    color: white;
+    border-radius: 6px;
+}
+.topbar {
+    width: 60px;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: large;
+    text-decoration: none;
+    color: black;
+}
+.topbar .shevron {
+    width: 30px;
+}
+/* Style for bottom bar */
+
+.bar-container {
+    position: fixed;
+    background-color: rgb(240, 240, 240);
+    right: 0px;
+    left: 0px;
+    bottom: 0px;
+    height: 100px;
+    z-index: 10;
+}
+
+.bar {
+    background-color: rgb(255, 255, 255);
+    height: 60px;
+    position: relative;
+    top: 18px;
+    margin-left: 20px;
+    margin-right: 20px;
+    display: flex;
+    border-radius: 30px;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 2px 4px 4px 4px rgb(205, 202, 202);
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.bar-icon {
+    width: 30px;
+    color: rgb(130, 128, 128);
+}
+
+/* Product lister */
+
+.prduct-container {
+    border-bottom: solid 2px rgb(222, 222, 222);
+    padding-bottom: 8px;
+}
+
+.products {
+    display: flex;
+    overflow-x: auto;
+}
+
+.products::-webkit-scrollbar {
+    display: none;
+}
+
+.products {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.product-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    font-weight: 600;
+    margin-left: 10px;
+    margin-right: 10px;
+    align-items: center;
+}
+
+.product-card {
+    display: inline-block;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 8px;
+    box-shadow: 4px 4px 4px rgb(222, 222, 222);
+    width: 50%;
+    text-decoration: none;
+    color: black;
+}
+
+.card-image {
+    position: relative;
+}
+
+.card-image .deal {
+    position: absolute;
+    top: 0;
+    background-color: #009d64;
+    color: white;
+    border-top-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
+    font-size: 14px;
+}
+
+.card-image img {
+    width: 180px;
+    margin: auto;
+    height: 160px;
+    border-top-left-radius: 8px;
+}
+
+.card-desc {
+    text-align: center;
+}
+
+.rating {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.rating div {
+    width: 100px;
+    display: flex;
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+    color: rgb(255, 232, 58);
+    padding-bottom: 2px;
+}
+
+.price {
+    color: #009d64;
+    padding: 0;
+
+}
+
+.discount {
+    color: rgb(242, 64, 64);
+    display: block;
+    text-decoration: line-through;
+    padding-bottom: 2px;
+}
+
+.top-slider {
+    width: 100%;
+    margin: 20px 0;
+    border-radius: 4px;
+}
+
+.top-slider div img {
+    width: 100%;
+    height: 300px;
+    margin: auto;
+    border-radius: 4px;
+}
+
+.simple-slider {
+    display: none;
+}
+
+.active {
+    display: block;
+}
+
+/* Category shower  */
+
+section {
+    margin: 20px 0;
+    box-shadow: 2px 2px 7px rgba(200, 200, 200, 0.6);
+}
+
+.categories-detail {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.category-el {
+    padding: 8px;
+    margin-bottom: 6px;
+    color: rgb(121, 121, 121);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+/* .category-el:hover {
+            background-color: #009d64;
+            color: rgb(255, 255, 255);
+        } */
+
+.category-el img {
+    border-radius: 6px;
+    margin: auto;
+    width: 60px;
+}
+
