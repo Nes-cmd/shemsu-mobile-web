@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 
 const TopNav = () => {
-    (
+    return (
         <>
             <nav className="nav-container">
                 <div className="nav">

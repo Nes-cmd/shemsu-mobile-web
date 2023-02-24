@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 const HorizontalProductSlider = () => {
     return (
         <section className="prduct-container">
@@ -8,7 +9,7 @@ const HorizontalProductSlider = () => {
             </span>
         </div>
         <div className="products">
-            <a href="single-product.html" className="product-card">
+            <Link to="single-product" className="product-card">
                 <div className="card-image">
                     <span className="deal">545 OFF</span>
                     <img src="storage/app/public/product/thumbnail/2022-11-02-6361f35fef605.png" alt="" />
@@ -47,7 +48,7 @@ const HorizontalProductSlider = () => {
                     <span className="discount">434 Birr</span>
                     <span className="price">5454.55 Birr</span>
                 </div>
-            </a>
+            </Link>
 
             <a href="single-product.html" className="product-card">
                 <div className="card-image">

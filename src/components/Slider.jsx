@@ -1,62 +1,76 @@
 import { useEffect, useState } from 'react'
 import './../styles/carousel.css'
-import Item from './carousel/Item'
+import {Item, Position} from './carousel/Item'
 
 const Slider = () => {
-    const [counter, setCounter] = useState(1)
+    // const [counter, setCounter] = useState(1)
 
-    let myDatas = [
-        {
-            id: "1",
-            image: "storage/picsum/237-1000x1000.jpg",
-            legend: "Here legend 1 goes",
-            style: {left: "0%"},
-        },
-        {
-            id: "2",
-            image: "storage/picsum/238-1000x1000.jpg",
-            legend: "Here legend 2 goes",
-            style: {left: "100%"},
-        },
-        {
-            id: "3",
-            image: "storage/picsum/239-1000x1000.jpg",
-            legend: "Here legend 3 goes",
-            style: {left: "200%"},
-        },
-        {
-            id: "4",
-            image: "storage/picsum/241-1000x1000.jpg",
-            legend: "Here legend 4 goes",
-            style: {left: "300%"},
-        },
-        {
-            id: "5",
-            image: "storage/picsum/240-1000x1000.jpg",
-            legend: "Here legend 5 goes",
-            style: {left: "400%"},
-        }
-    ];
+    let myDatas = {
+        counter: 0,
+        data: [
+            {
+                id: "1",
+                image: "storage/picsum/237-1000x1000.jpg",
+                legend: "Here legend 1 goes",
+                style: { left: "0%" },
+                positionColor:"white",
+            },
+            {
+                id: "2",
+                image: "storage/picsum/238-1000x1000.jpg",
+                legend: "Here legend 2 goes",
+                style: { left: "100%" },
+                positionColor:"rgb(133, 184, 184)",
+            },
+            {
+                id: "3",
+                image: "storage/picsum/239-1000x1000.jpg",
+                legend: "Here legend 3 goes",
+                style: { left: "200%" },
+                positionColor:"rgb(133, 184, 184)",
+            },
+            {
+                id: "4",
+                image: "storage/picsum/240-1000x1000.jpg",
+                legend: "Here legend 4 goes",
+                style: { left: "300%" },
+                positionColor:"rgb(133, 184, 184)",
+            },
+            {
+                id: "5",
+                image: "storage/picsum/238-1000x1000.jpg",
+                legend: "Here legend 5 goes",
+                style: { left: "400%" },
+                positionColor:"rgb(133, 184, 184)",
+            }
+        ]
+    };
     const [datas, setDatas] = useState(myDatas)
 
 
     const prevSlide = () => {
-        let nextCounter = counter - 1;
-        if (nextCounter < 0) nextCounter = datas.length - 1
-        setCounter(() => nextCounter)
-        let nextData = datas.map((data) => {return {...data, style:{...data.style, transform:`translateX(${-counter * 100}%)`} } })
-        setDatas(() => nextData);
-        console.log(counter)
-        // positions[counter].style.backgroundColor = "rgb(133, 184, 184)";
-        // positions[counter].style.backgroundColor = "white";
+        setDatas((prevData) => {
+            let nextCounter = prevData.counter - 1
+            if (nextCounter < 0) nextCounter = datas.data.length - 1
+            let nextData = datas.data.map((data) => {
+                return { ...data, style: { ...data.style, transform: `translateX(${-nextCounter * 100}%)` } }
+            })
+            nextData[prevData.counter].positionColor = "rgb(133, 184, 184)";
+            nextData[nextCounter].positionColor = "white";
+            return { ...prevData, counter: nextCounter, data: nextData }
+        });
+        // console.log(datas)
     }
     const nextSlide = () => {
-        setCounter((prevCounter) => ((prevCounter + 1) % datas.length))
-        let nextData = datas.map((data) => {return {...data, style:{...data.style, transform:`translateX(${-counter * 100}%)`} } })
-        setDatas(() => nextData);
-        console.log(counter)
-        // positions[counter].style.backgroundColor = "rgb(133, 184, 184)";
-        // positions[counter].style.backgroundColor = "white";
+        setDatas((prevData) => {
+            let nextCounter = (prevData.counter + 1) % datas.data.length
+            let nextData = datas.data.map((data) => {
+                return { ...data, style: { ...data.style, transform: `translateX(${-nextCounter * 100}%)` } }
+            })
+            nextData[prevData.counter].positionColor = "rgb(133, 184, 184)";
+            nextData[nextCounter].positionColor = "white";
+            return { ...prevData, counter: nextCounter, data: nextData }
+        });
     }
 
     // setInterval(nextSlide, 5000);
@@ -64,18 +78,10 @@ const Slider = () => {
     return (
         <section className="carousel-container">
             <div>
-                <Item item={datas[0]}/>
-                <Item item={datas[1]}/>
-                <Item item={datas[2]}/>
-                <Item item={datas[3]}/>
-                <Item item={datas[4]}/>
+                { datas.data.map((data) => <Item item={data} />) }
             </div>
             <div className="position-show">
-                <span style={{backgroundColor: "white"}} className="positions"></span>
-                <span className="positions"></span>
-                <span className="positions"></span>
-                <span className="positions"></span>
-                <span className="positions"></span>
+                { datas.data.map((data) => <Position position={data} />) }
             </div>
             <div className="nav">
                 <button onClick={prevSlide}>

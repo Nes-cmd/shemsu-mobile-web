@@ -8,5 +8,10 @@ const Item = ({item}) => {
     </div>
     )
 }
+const Position = ({position}) => {
+    return (
+        <span key={ position.id } className="positions" style={{ backgroundColor: position.positionColor }} />
+    )
+}
 
-export default Item;
+export {Item, Position};
