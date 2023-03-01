@@ -1,6 +1,6 @@
 import CategoryPreview from "./components/CategoryPreview";
 import HorizontalProductSlider from "./components/HorizontalProductSlider";
-import Slider from "./components/Slider";
+import Carousel from "./components/carousel/Carousel";
 import TopBar from "./layouts/TopBar";
 import BottomBar from "./layouts/BottomBar";
 
@@ -8,7 +8,7 @@ const Home = () => {
     return (
         <>
             <TopBar />
-            <Slider />
+            <Carousel />
             <CategoryPreview />
             <HorizontalProductSlider />
             <BottomBar />

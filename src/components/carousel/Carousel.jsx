@@ -1,90 +1,99 @@
-import './../styles/carousel.css'
+import { useEffect, useState } from 'react'
+import './../../styles/carousel.css'
+import {Item, Position} from './Item'
 
-const Slider = () => {
-    const slides = document.querySelectorAll(".slide")
-    const positions = document.querySelectorAll('.positions')
-    var counter = 0
+const Carousel = () => {
+    // const [counter, setCounter] = useState(1)
 
-    slides.forEach((slide, index) => {
-        slide.style.left = `${index * 100}%`;
-    })
-
-    const slideImage = () => {
-        slides.forEach(
-            (slide, index) => {
-                slide.style.transform = `translateX(-${counter * 100}%)`;
+    let myDatas = {
+        counter: 0,
+        data: [
+            {
+                id: "1",
+                image: "storage/picsum/237-1000x1000.jpg",
+                legend: "Here legend 1 goes",
+                style: { left: "0%" },
+                positionColor:"white",
+            },
+            {
+                id: "2",
+                image: "storage/picsum/238-1000x1000.jpg",
+                legend: "Here legend 2 goes",
+                style: { left: "100%" },
+                positionColor:"rgb(133, 184, 184)",
+            },
+            {
+                id: "3",
+                image: "storage/picsum/239-1000x1000.jpg",
+                legend: "Here legend 3 goes",
+                style: { left: "200%" },
+                positionColor:"rgb(133, 184, 184)",
+            },
+            {
+                id: "4",
+                image: "storage/picsum/240-1000x1000.jpg",
+                legend: "Here legend 4 goes",
+                style: { left: "300%" },
+                positionColor:"rgb(133, 184, 184)",
+            },
+            {
+                id: "5",
+                image: "storage/picsum/238-1000x1000.jpg",
+                legend: "Here legend 5 goes",
+                style: { left: "400%" },
+                positionColor:"rgb(133, 184, 184)",
             }
-        );
+        ]
+    };
+    const [datas, setDatas] = useState(myDatas)
+    const prevSlide = () => {
+        setDatas((prevData) => {
+            let nextCounter = prevData.counter - 1
+            if (nextCounter < 0) nextCounter = datas.data.length - 1
+            let nextData = datas.data.map((data) => {
+                return { ...data, style: { ...data.style, transform: `translateX(${-nextCounter * 100}%)` } }
+            })
+            nextData[prevData.counter].positionColor = "rgb(133, 184, 184)";
+            nextData[nextCounter].positionColor = "white";
+            return { ...prevData, counter: nextCounter, data: nextData }
+        });
     }
-    const prev = () => {
-        positions[counter].style.backgroundColor = 'rgb(133, 184, 184)';
-        counter--;
-        if (counter < 0) counter = slides.length - 1
-        slideImage();
-        positions[counter].style.backgroundColor = 'white';
+    const nextSlide = () => {
+        setDatas((prevData) => {
+            let nextCounter = (prevData.counter + 1) % datas.data.length
+            let nextData = datas.data.map((data) => {
+                return { ...data, style: { ...data.style, transform: `translateX(${-nextCounter * 100}%)` } }
+            })
+            nextData[prevData.counter].positionColor = "rgb(133, 184, 184)";
+            nextData[nextCounter].positionColor = "white";
+           
+            return { ...prevData, counter: nextCounter, data: nextData }
+        });
     }
-    const next = () => {
-        positions[counter].style.backgroundColor = 'rgb(133, 184, 184)';
-        counter++;
-        counter = counter % slides.length
-        slideImage();
-        positions[counter].style.backgroundColor = 'white';
-    }
+    useEffect(() => {
+        setInterval(nextSlide, 5000);
+    }, [])
 
-    setInterval(next, 5000);
+    
 
     return (
-        <main className="carousel-container">
+        <section className="carousel-container">
             <div>
-                <div className="slide">
-                    <div className="slider-item">
-                        <img src="https://picsum.photos/id/237/1000/1000" alt="" />
-                        <span className="legend">Here legend 1 goes</span>
-                    </div>
-                </div>
-                <div className="slide">
-                    <div className="slider-item">
-                        <img src="https://picsum.photos/id/238/1000/1000" alt="" />
-                        <span className="legend">Here legend 2 goes</span>
-                    </div>
-                </div>
-                <div className="slide">
-                    <div className="slider-item">
-                        <img src="https://picsum.photos/id/239/1000/1000" alt="" />
-                        <span className="legend">Here legend 3 goes</span>
-                    </div>
-                </div>
-                <div className="slide">
-                    <div className="slider-item">
-                        <img src="https://picsum.photos/id/239/1000/1000" alt="" />
-                        <span className="legend">Here legend 4 goes</span>
-                    </div>
-                </div>
-
-                <div className="slide">
-                    <div className="slider-item">
-                        <img src="https://picsum.photos/id/240/1000/1000" alt="" />
-                        <span className="legend">Here legend 5 goes</span>
-                    </div>
-                </div>
+                { datas.data.map((data) => <Item key={ data.id } item={data} />) }
             </div>
             <div className="position-show">
-                <span style={{backgroundColor: "white"}} className="positions"></span>
-                <span className="positions"></span>
-                <span className="positions"></span>
-                <span className="positions"></span>
-                <span className="positions"></span>
+                { datas.data.map((data) => <Position key={ data.id } position={data} />) }
             </div>
             <div className="nav">
-                <button onclick="prev()">
+                <button onClick={prevSlide}>
                     &larr;
                 </button>
-                <button onclick="next()">
+                <button onClick={nextSlide}>
                     &rarr;
                 </button>
             </div>
-        </main>
+        </section>
     )
 }
 
-export default Slider;
+export default Carousel;

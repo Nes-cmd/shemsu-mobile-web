@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react';
+import  axios  from 'axios';
+
 const HorizontalProductSlider = () => {
     const [products, setProducts] = useState(null);
 
-    useEffect(async() => {
-        const response = await fetch("https://fakestoreapi.com/products");
-        const data = await response.json();
-        
-        setProducts(data)
+    useEffect(() => {
+        axios.get("https://fakestoreapi.com/products").then((response) => {
+            setProducts(response.data);
+        }).catch((err) => console.log(err))
     }, []);
     
     const Product = ({product}) => {

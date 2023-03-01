@@ -1,4 +1,4 @@
-import Slider from "./Slider";
+import Carousel from "./carousel/Carousel";
 import BackNav from './../layouts/BackNav'
 
 import './../styles/single-product.css'
@@ -9,7 +9,7 @@ const SingleProduct = () => {
         <section>
             <BackNav currentName="Single Product" toPath="/" />
             <div className="detail">
-                <Slider />
+                <Carousel />
                 <div className="detail-desc">
                     <div className="desc-header">
                         <div className="name">Samsung Galaxy</div>
