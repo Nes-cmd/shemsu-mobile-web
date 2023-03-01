@@ -2,6 +2,7 @@ import Slider from "./Slider";
 import BackNav from './../layouts/BackNav'
 
 import './../styles/single-product.css'
+import { Link } from "react-router-dom";
 
 const SingleProduct = () => {
     return (
@@ -64,7 +65,9 @@ const SingleProduct = () => {
                         </svg>
                     </div>
                     <div>
-                        <button className="cart-btn">Add to cart</button>
+                        <Link to="checkout">
+                            <button className="cart-btn">Add to cart</button>
+                        </Link>
                     </div>
                 </div>
             </div>

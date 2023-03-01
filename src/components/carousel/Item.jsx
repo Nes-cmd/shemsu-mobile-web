@@ -10,7 +10,7 @@ const Item = ({item}) => {
 }
 const Position = ({position}) => {
     return (
-        <span key={ position.id } className="positions" style={{ backgroundColor: position.positionColor }} />
+        <span className="positions" style={{ backgroundColor: position.positionColor }} />
     )
 }
 

@@ -1,12 +1,21 @@
 /* Style for top bar */
-
+hr {
+    height: 0px;
+    margin: 0;
+    border:solid 0.5px rgb(237, 237, 237);
+    align-items: center;
+}
 .nav-container {
     padding: 20px;
     margin: 0;
+    position: relative;
+    top: 0;
+    width: 80%;
+    z-index: 10;
 }
 
 .nav {
-    display: flex;
+    display: flex; 
     justify-content: space-between;
     align-items: center;
 }
@@ -31,8 +40,8 @@
     padding: 0px 20px 10px 20px;
     height: 25px;
     margin-top: 10px;
-    position: -webkit-sticky;
-    position: sticky;
+    /* position: -webkit-sticky; */
+    position: relative;
     top: 10px;
 }
 
@@ -79,7 +88,7 @@
     border-radius: 6px;
 }
 .topbar {
-    width: 60px;
+    width: 100%;
     display: flex;
     align-items: center;
     font-weight: 600;

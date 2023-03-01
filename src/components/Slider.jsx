@@ -46,8 +46,6 @@ const Slider = () => {
         ]
     };
     const [datas, setDatas] = useState(myDatas)
-
-
     const prevSlide = () => {
         setDatas((prevData) => {
             let nextCounter = prevData.counter - 1
@@ -69,19 +67,23 @@ const Slider = () => {
             })
             nextData[prevData.counter].positionColor = "rgb(133, 184, 184)";
             nextData[nextCounter].positionColor = "white";
+            console.log(nextData)
             return { ...prevData, counter: nextCounter, data: nextData }
         });
     }
+    useEffect(() => {
+        setInterval(nextSlide, 5000);
+    }, [])
 
-    // setInterval(nextSlide, 5000);
+    
 
     return (
         <section className="carousel-container">
             <div>
-                { datas.data.map((data) => <Item item={data} />) }
+                { datas.data.map((data) => <Item key={ data.id } item={data} />) }
             </div>
             <div className="position-show">
-                { datas.data.map((data) => <Position position={data} />) }
+                { datas.data.map((data) => <Position key={ data.id } position={data} />) }
             </div>
             <div className="nav">
                 <button onClick={prevSlide}>
